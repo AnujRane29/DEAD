@@ -1,0 +1,128 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.*;
+public class Hash
+{
+	public static void main(String[] args) {
+		Hashtable<String, Integer> hash = new Hashtable<>();
+ 
+        hash.put("A", 1);
+        hash.put("B", 2);
+        hash.put("C", 3);
+ 
+        int valueA = hash.get("A");
+        System.out.println("Value of A: " + valueA);
+ 
+     
+        Enumeration<String> keys = hash.keys();
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+            System.out.println("Key: " + key + ", Value: " + hash.get(key));
+        }
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.*;
+public class Hash_Set
+{
+	public static void main(String[] args) {
+		System.out.println(" ");
+		Set< String> st = new HashSet<>();
+		st.add("Anuj");
+		st.add("Ravi");
+		st.add("Rane");
+		st.add("Vijay");
+		System.out.println("Set1: "+st);
+	    Set< String> st1 = new HashSet<>(st);
+	    st1.add("Sanjay");
+	    st1.add("Rahul");
+	    System.out.println("Set2: "+st1);
+	    Set< String> st2 = new HashSet<>();
+	    st2.addAll(st1);
+        System.out.println("Set3: "+st2);
+        st2.remove("Ajinkya");
+        System.out.println("Afer removing Ajinkya "+st2);
+        System.out.println("Iterating");
+        Iterator<String> i= st2.iterator();
+        while(i.hasNext())
+            System.out.println(i.next());
+        System.out.println("Size of Set3: "+st2.size());
+        System.out.println("After Removing Set2: "+st1.removeAll(st)+"\n Set1 "+st1+"\n"+st);
+       
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

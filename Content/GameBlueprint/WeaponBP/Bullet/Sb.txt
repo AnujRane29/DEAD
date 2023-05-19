@@ -1,0 +1,190 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.*;
+/**
+ *
+ * @author Anuj Ravi Rane
+ */
+public class auctioning extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final long serialVersionUID = 1L;
+       
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+		response.setContentType("text/html");  
+		PrintWriter out = response.getWriter();  
+			          
+			String n=request.getParameter("userName");  
+			String p=request.getParameter("productName");  
+			int e=Integer.parseInt(request.getParameter("bidValue"));  
+		
+			          
+			try{  
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");  
+			Statement stmt=con.createStatement();  
+			PreparedStatement ps=con.prepareStatement("insert into user values(?,?,?)");  
+			  
+			ps.setString(1,n);  
+			ps.setString(2,p);  
+			ps.setInt(3,e);  
+			
+				          
+			int i=ps.executeUpdate();  
+			if(i>0)  
+			out.print("You are successfully registered...");  
+			      
+			ResultSet rs=stmt.executeQuery("select * from user where UName='"+n+"'");  
+			
+			while(rs.next())  
+			out.println("<br>Your data is:"+rs.getString(1)+"  "+rs.getString(2)+" "+rs.getInt(3));   
+			con.close();
+			}catch (Exception e2) 
+			{System.out.println(e2);}  
+			          
+			out.close();  
+			}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="auctioning" method="post">  
+	  
+Name:<input type="text" name="userName"/><br/><br/>  
+Product:  
+<select name="productName">  
+<option>Dell</option>  
+<option>HP</option>  
+<option>Sony</option>  
+<option>Lenovo</option>  
+</select>  
+<br/><br/>  
+Bid Value:<input type="text" name="bidValue"/><br/><br/>  
+<input type="submit" value="register"/>  
+</form>  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>auctioning</servlet-name>
+        <servlet-class>auctioning</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>auctioning</servlet-name>
+        <url-pattern>/auctioning</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/testimg"/>

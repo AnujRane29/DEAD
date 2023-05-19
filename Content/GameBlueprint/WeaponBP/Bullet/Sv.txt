@@ -1,0 +1,229 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.*;
+
+ class Video{
+    public String videoName;
+    public boolean checkout=false;
+    public int rating;
+    
+    
+    public String getName(){
+        return videoName;
+    }
+    public void doCheckout(){
+        checkout=true;
+    }
+    public void doReturn(){
+        checkout=false;
+    }
+    public void recieveRating(int rating){
+        this.rating=rating;
+    }
+    public int getRating(){
+          if(rating>0)  return rating;
+        else return 0;
+    }
+    public boolean getCheckout(){
+        return checkout;
+    }
+    
+    //  Video(String Name){
+    //     videoName="";
+    //     checkout=false;
+    //     rating=0;
+    //  }
+    
+};
+
+
+ class VideoStore extends Video{
+    Video v[]=new Video[10];
+    static int i=0;
+    void addVideo(String name){
+        v[i] = new Video();
+        this.videoName=name;
+        
+        v[i].videoName=name;
+        i++;
+        System.out.println("Video added successfully");
+    }
+    
+    void Checkout(String name){
+        for(int k=0;k<i;k++){
+            if(v[k].videoName.equalsIgnoreCase(name))
+               {   if(!v[k].getCheckout()) 
+                    {v[k].doCheckout();
+                    System.out.println(name+" Video is rented successfully");
+                    break;
+                    }
+                    
+                    else {System.out.println("Sorry Video not available");}
+               }
+               
+            }
+            
+        }
+    
+    void doReturn(String name){
+        if(i==0){
+             System.out.println("You have no video to return");
+
+        }
+       else{
+           for(int k=0;k<i;k++)
+
+          {
+
+               if(v[k].videoName.equalsIgnoreCase(name)){
+                System.out.println("Video "+v[k].videoName+" is returned successfully");
+                    v[k].checkout=false;
+
+               }
+
+          }   
+       } 
+    }
+    void recieveRating(){
+         if(i==0){
+
+               System.out.println("No Video inInventory");
+
+          }
+
+          else{
+
+               for(int k=0;k<i;k++)
+
+               {
+
+                    System.out.println("Enter the rating for movie: "+v[k].videoName);
+
+                    Scanner ob=new Scanner(System.in);
+
+                    v[k].rating=ob.nextInt();
+
+               }
+
+          }
+    }
+ void Inventory(){
+         if(i==0)
+
+{     System.out.println("No Video in Inventory");    }
+
+        else
+
+          {     System.out.println("----------------------------------------------------------------------------------------");
+                    System.out.println(" Video Name   |\tRating     |\tCheckout status ");
+
+               for(int k=0;k<i;k++)
+
+               {
+                    
+                    System.out.println(k+1 +"] "+v[k].videoName+" "+"\tRating: "+v[k].rating+"\tCheckout status: "+v[k].getCheckout());
+                    
+
+               }
+                System.out.println("----------------------------------------------------------------------------------------");
+          }
+
+    }  
+        
+    };
+    
+    
+
+public class Main
+{     static VideoStore vs =new VideoStore();
+	public static void main(String[] args) {
+	    System.out.println("----------|Menu|-------------------");
+	             System.out.println("1. Add Videos: ");
+                 System.out.println("2. Check out Video");
+                 System.out.println("3. Return Video:");
+                 System.out.println("4. Receive Rating: ");
+                 System.out.println("5. List Inventory: ");
+                 System.out.println("6. Exit: ");
+                  
+                Scanner s=new Scanner(System.in);
+                System.out.println("Enter your choice(1..6): ");
+               int ch=s.nextInt();
+                
+                do{ 
+                    switch(ch){
+                     case 1: System.out.println("Enter the name of Video");
+
+                    String videoName=s.next();
+
+                    vs.addVideo(videoName);
+                     break;
+                     
+                     case 2: 
+                         {   vs.Inventory();
+                         System.out.println("Enter the video Name you want");
+                        String videoName1=s.next();
+                         vs.Checkout(videoName1);
+                    break;}
+                         
+                         
+                     case 3: { System.out.println("Enter the video Name you want to return");
+                     String videoName2=s.next();
+                         vs.doReturn(videoName2);
+                     break;
+                     }
+                     case 4: {
+                      
+                         vs.recieveRating();
+                     break;
+                         
+                     }
+                     case 5: vs.Inventory();
+                     break;
+                     case 6: System.out.println("Exiting....!!");
+                     break;
+                     default:System.out.println("Sorry Wrong Choice");
+                    }
+             	 System.out.println("----------|Menu|-------------------");
+                 System.out.println("1. Add Videos: ");
+                 System.out.println("2. Check out Video");
+                 System.out.println("3. Return Video:");
+                 System.out.println("4. Receive Rating: ");
+                 System.out.println("5. List Inventory: ");
+                 System.out.println("6. Exit: ");
+                 System.out.println("Enter your choice(1..6): ");
+                ch=s.nextInt();
+                 }while(ch!=6);
+
+	}
+}
+
+

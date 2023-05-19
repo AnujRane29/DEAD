@@ -1,0 +1,100 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ */
+
+package com.mycompany.exp8;
+
+/**
+ *
+ * @author Anuj Ravi Rane
+ */
+import java.sql.*;
+import java.util.*;
+public class Exp8 {
+    	public static void main(String[] args) {
+            try{
+            String name=null,pname=null;
+            int quantity; 
+            Scanner sc= new Scanner(System.in);
+                System.out.println("Enter the coustomer name: ");
+               name=sc.next();
+                System.out.println("Enter the product name: ");
+                 pname=sc.next();
+                System.out.println("Enter the quantity : ");
+                 quantity=sc.nextInt();
+                
+                 Class.forName("com.mysql.jdbc.Driver");
+                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sql_store","root","1234");
+                 
+                 Statement stmt=con.createStatement();
+                
+                 PreparedStatement ps=con.prepareStatement("insert into test values(?,?,?)");
+                
+                 ps.setString(1,name);
+                 ps.setString(2,pname);
+                 ps.setInt(3,quantity);
+                 
+                 ps.executeUpdate();
+                 
+                 System.out.println("Successfully added!!!");
+                 
+                 
+                 ResultSet rs=stmt.executeQuery("select*from test");
+                 
+                 while(rs.next())
+                     System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getInt(3));//double quotes are added to give user option to add values
+                 System.out.print("Successfully");
+                 con.close();
+                 
+            }catch(Exception e){
+            System.out.println(e);}
+                
+	}
+    
+    
+}

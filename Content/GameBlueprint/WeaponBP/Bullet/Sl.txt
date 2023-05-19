@@ -1,0 +1,57 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.*;  
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    ArrayList<String> list=new ArrayList<String>();
+	  list.add("Anuj");
+      list.add("Ravi");    
+      list.add("Rane"); 
+      if(list.contains("Rane")){
+          int Index=list.indexOf("Rane");
+          System.out.println("Rane found at Index: "+Index);
+      }
+      else{  System.out.println("Element Not Found");}
+      
+  
+      for(int i=0;i<list.size();i++)
+     {String a=list.get(i);
+     System.out.println(a);
+     }
+     list.remove(1);
+		System.out.println("After removing Element at index 1: "+list);
+	}
+}
