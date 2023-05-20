@@ -1,0 +1,1488 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Se
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class Employee
+{
+  String empId;
+  String depName;
+  String empDesignation;
+  String empName;
+  String dateJoin;
+  int basic;
+  int hra;
+  int it;
+  char designationCode;
+  public static int da;
+  public Employee (String empId, String depName, String empDesignation,
+		   String empName, String dateJoin, int basic, int hra,
+		   int it, char designationCode)
+  {
+    this.empId = empId;
+    this.depName = depName;
+    this.empDesignation = empDesignation;
+    this.empName = empName;
+    this.dateJoin = dateJoin;
+    this.basic = basic;
+    this.hra = hra;
+    this.it = it;
+    this.designationCode = designationCode;
+  }
+  public static int da (char designationCode)
+  {
+    switch (designationCode)
+      {
+      case 'e':
+	{
+	  da = 20000;
+	  break;
+	}
+      case 'c':
+	{
+	  da = 32000;
+	  break;
+	}
+      case 'k':
+	{
+	  da = 12000;
+	  break;
+	}
+      case 'r':
+	{
+	  da = 15000;
+	  break;
+	}
+      case 'm':
+	{
+	  da = 40000;
+	  break;
+	}
+      default:
+	throw new IllegalStateException ("Unexpected value: " +
+					 designationCode);
+
+      }
+    return da;
+
+  }
+  
+  
+  public static int salary (int basic, int hra, int da, int it)
+  {
+    int salary = basic + hra + da - it;
+    return salary;
+  }
+  
+  
+  
+  public static void details (String empId, String empName, String depName,
+			      String empDesignation, int salary)
+  {
+    System.out.
+      println
+      ("Emp Id\t\tEmployee Name\tDepartment\t\tDesignation\t\tSalary");
+    System.out.println (empId + "\t\t" + empName + "\t\t\t" + depName + "\t\t\t\t" + empDesignation + "\t\t" + salary);
+  }
+  
+  
+  public static void main (String[]args) throws IOException
+  {
+    BufferedReader bufferedReader =
+      new BufferedReader (new InputStreamReader (System.in));
+    String empId;
+    int c = 0;
+      Employee[] employees = new Employee[3];
+      employees[0] =
+      new Employee ("3501", "R&D", "Engineer", "Ash", "1/04/2009", 20000, 8000, 3000, 'e');
+      
+      employees[1] =
+      new Employee ("3502", "PM", "Consultant", "Anjali", "23/08/2012", 30000, 12000, 9000, 'c');
+      
+      employees[2] =
+      new Employee ("3503", "Acct", "Clerk", "Raju", "12/11/2008", 10000, 8000, 1000, 'k');
+      
+      System.out.println ("Enter the employee ID ");
+      empId = bufferedReader.readLine();
+    for (int i = 0; i < 3; i++)
+      {
+	if (employees[i].empId.equals (empId))
+	  {
+	    c = 1;
+	    int salary =
+	      salary (employees[i].basic, employees[i].hra,
+		      da (employees[i].designationCode),
+		      employees[i].designationCode);
+		      
+	      details (employees[i].empId, employees[i].empName,
+		       employees[i].depName, employees[i].empDesignation,
+		       salary);
+	      break;
+	  }
+      }
+    if (c != 1)
+        System.out.println ("Entered employee ID not found");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sv
+
+import java.util.*;
+
+ class Video{
+    public String videoName;
+    public boolean checkout=false;
+    public int rating;
+    
+    
+    public String getName(){
+        return videoName;
+    }
+    public void doCheckout(){
+        checkout=true;
+    }
+    public void doReturn(){
+        checkout=false;
+    }
+    public void recieveRating(int rating){
+        this.rating=rating;
+    }
+    public int getRating(){
+          if(rating>0)  return rating;
+        else return 0;
+    }
+    public boolean getCheckout(){
+        return checkout;
+    }
+    
+    //  Video(String Name){
+    //     videoName="";
+    //     checkout=false;
+    //     rating=0;
+    //  }
+    
+};
+
+
+ class VideoStore extends Video{
+    Video v[]=new Video[10];
+    static int i=0;
+    void addVideo(String name){
+        v[i] = new Video();
+        this.videoName=name;
+        
+        v[i].videoName=name;
+        i++;
+        System.out.println("Video added successfully");
+    }
+    
+    void Checkout(String name){
+        for(int k=0;k<i;k++){
+            if(v[k].videoName.equalsIgnoreCase(name))
+               {   if(!v[k].getCheckout()) 
+                    {v[k].doCheckout();
+                    System.out.println(name+" Video is rented successfully");
+                    break;
+                    }
+                    
+                    else {System.out.println("Sorry Video not available");}
+               }
+               
+            }
+            
+        }
+    
+    void doReturn(String name){
+        if(i==0){
+             System.out.println("You have no video to return");
+
+        }
+       else{
+           for(int k=0;k<i;k++)
+
+          {
+
+               if(v[k].videoName.equalsIgnoreCase(name)){
+                System.out.println("Video "+v[k].videoName+" is returned successfully");
+                    v[k].checkout=false;
+
+               }
+
+          }   
+       } 
+    }
+    void recieveRating(){
+         if(i==0){
+
+               System.out.println("No Video inInventory");
+
+          }
+
+          else{
+
+               for(int k=0;k<i;k++)
+
+               {
+
+                    System.out.println("Enter the rating for movie: "+v[k].videoName);
+
+                    Scanner ob=new Scanner(System.in);
+
+                    v[k].rating=ob.nextInt();
+
+               }
+
+          }
+    }
+ void Inventory(){
+         if(i==0)
+
+{     System.out.println("No Video in Inventory");    }
+
+        else
+
+          {     System.out.println("----------------------------------------------------------------------------------------");
+                    System.out.println(" Video Name   |\tRating     |\tCheckout status ");
+
+               for(int k=0;k<i;k++)
+
+               {
+                    
+                    System.out.println(k+1 +"] "+v[k].videoName+" "+"\tRating: "+v[k].rating+"\tCheckout status: "+v[k].getCheckout());
+                    
+
+               }
+                System.out.println("----------------------------------------------------------------------------------------");
+          }
+
+    }  
+        
+    };
+    
+    
+
+public class Main
+{     static VideoStore vs =new VideoStore();
+	public static void main(String[] args) {
+	    System.out.println("----------|Menu|-------------------");
+	             System.out.println("1. Add Videos: ");
+                 System.out.println("2. Check out Video");
+                 System.out.println("3. Return Video:");
+                 System.out.println("4. Receive Rating: ");
+                 System.out.println("5. List Inventory: ");
+                 System.out.println("6. Exit: ");
+                  
+                Scanner s=new Scanner(System.in);
+                System.out.println("Enter your choice(1..6): ");
+               int ch=s.nextInt();
+                
+                do{ 
+                    switch(ch){
+                     case 1: System.out.println("Enter the name of Video");
+
+                    String videoName=s.next();
+
+                    vs.addVideo(videoName);
+                     break;
+                     
+                     case 2: 
+                         {   vs.Inventory();
+                         System.out.println("Enter the video Name you want");
+                        String videoName1=s.next();
+                         vs.Checkout(videoName1);
+                    break;}
+                         
+                         
+                     case 3: { System.out.println("Enter the video Name you want to return");
+                     String videoName2=s.next();
+                         vs.doReturn(videoName2);
+                     break;
+                     }
+                     case 4: {
+                      
+                         vs.recieveRating();
+                     break;
+                         
+                     }
+                     case 5: vs.Inventory();
+                     break;
+                     case 6: System.out.println("Exiting....!!");
+                     break;
+                     default:System.out.println("Sorry Wrong Choice");
+                    }
+             	 System.out.println("----------|Menu|-------------------");
+                 System.out.println("1. Add Videos: ");
+                 System.out.println("2. Check out Video");
+                 System.out.println("3. Return Video:");
+                 System.out.println("4. Receive Rating: ");
+                 System.out.println("5. List Inventory: ");
+                 System.out.println("6. Exit: ");
+                 System.out.println("Enter your choice(1..6): ");
+                ch=s.nextInt();
+                 }while(ch!=6);
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Si
+
+import java.util.*;
+ 
+abstract class Account {
+    double interestRate;
+    double amount;
+    abstract double calculateInterest(double amount);
+}
+// FDaAccount.java
+ class FDaccount extends Account {
+    double FDinterestRate;
+    double FDAmount;
+    int noOfDays;
+    int ageOfACHolder;
+    double General, SCitizen;
+    Scanner FDScanner = new Scanner(System.in);
+    
+    @Override
+    double calculateInterest(double amount)
+    {
+        this.FDAmount = amount;
+        System.out.println("Enter FD days");
+        noOfDays = FDScanner.nextInt();
+        System.out.println("Enter FD age holder ");
+        ageOfACHolder = FDScanner.nextInt();
+
+        if (amount < 10000000) {
+            if (noOfDays >= 7 && noOfDays <= 14) {
+                General = 0.0450;
+                SCitizen = 0.0500;
+            }
+            else if (noOfDays >= 15 && noOfDays <= 29) {
+                General = 0.0470;
+                SCitizen = 0.0525;
+            }
+            else if (noOfDays >= 30 && noOfDays <= 45) {
+                General = 0.0550;
+                SCitizen = 0.0600;
+            }
+            else if (noOfDays >= 45 && noOfDays <= 60) {
+                General = 0.0700;
+                SCitizen = 0.0750;
+            }
+            else if (noOfDays >= 61 && noOfDays <= 184) {
+                General = 0.0750;
+                SCitizen = 0.0800;
+            }
+            else if (noOfDays >= 185 && noOfDays <= 365) {
+                General = 0.0800;
+                SCitizen = 0.0850;
+            }
+            FDinterestRate
+                = (ageOfACHolder < 50) ? General : SCitizen;
+        }
+        else {
+            if (noOfDays >= 7 && noOfDays <= 14) {
+                interestRate = 0.065;
+            }
+            else if (noOfDays >= 15 && noOfDays <= 29) {
+                interestRate = 0.0675;
+            }
+            else if (noOfDays >= 30 && noOfDays <= 45) {
+                interestRate = 0.00675;
+            }
+            else if (noOfDays >= 45 && noOfDays <= 60) {
+                interestRate = 0.080;
+            }
+            else if (noOfDays >= 61 && noOfDays <= 184) {
+                interestRate = 0.0850;
+            }
+            else if (noOfDays >= 185 && noOfDays <= 365) {
+                interestRate = 0.10;
+            }
+        }
+        return FDAmount * FDinterestRate;
+    }
+}
+
+// RDaccount.java
+ class RDaccount extends Account {
+    double RDInterestRate;
+    double RDamount;
+    int noOfMonths;
+    double monthlyAmount;
+    double General, SCitizen;
+    Scanner RDScanner = new Scanner(System.in);
+    
+    @Override
+    double calculateInterest(double Ramount)
+    {
+        this.RDamount = Ramount;
+        System.out.println("Enter RD months");
+        noOfMonths = RDScanner.nextInt();
+        System.out.println("Enter RD holder age");
+        int age = RDScanner.nextInt();
+
+        if (noOfMonths >= 0 && noOfMonths <= 6) {
+            General = .0750;
+            SCitizen = 0.080;
+        }
+        else if (noOfMonths >= 7 && noOfMonths <= 9) {
+            General = .0775;
+            SCitizen = 0.0825;
+        }
+        else if (noOfMonths >= 10 && noOfMonths <= 12) {
+            General = .0800;
+            SCitizen = 0.0850;
+        }
+        else if (noOfMonths >= 13 && noOfMonths <= 15) {
+            General = .0825;
+            SCitizen = 0.0875;
+        }
+        else if (noOfMonths >= 16 && noOfMonths <= 18) {
+            General = .0850;
+            SCitizen = 0.0900;
+        }
+        else if (noOfMonths >= 22) {
+            General = .0875;
+            SCitizen = 0.0925;
+        }
+        RDInterestRate = (age < 50) ? General : SCitizen;
+        return RDamount * RDInterestRate;
+    }
+}
+
+// SBaccount.Java
+class SBaccount extends Account {
+    double SBamount, SbInterestRate, interest;
+    Scanner SBScanner = new Scanner(System.in);
+    
+    @Override
+    double calculateInterest(double amount)
+    {
+        this.SBamount = amount;
+        System.out.println(
+            "Select account type \n1. NRI \n2. Normal ");
+        int accountChoice = SBScanner.nextInt();
+        switch (accountChoice) {
+        case 1:
+            SbInterestRate = .06;
+            break;
+        case 2:
+            SbInterestRate = .04;
+            break;
+        default:
+            System.out.println("Please choose right account again");
+        }
+        return amount * SbInterestRate;
+    }
+}
+
+// IntrestCalculator
+ public class Main {
+    public static void main(String[] args)
+    {
+        // TODO code application logic here
+        Scanner sc = new Scanner(System.in);
+        System.out.println(
+            "SELECT THE OPTIONS "
+            + "\n1."
+            + " Interest Calculator-Saving Account " + " \n2." + " Interest Calculator - Fixed Deposit "
+            + "\n3."
+            + " InterestCalculator-Recurring Deposits"
+            + "\n4 "
+            + " Exit");
+        int choice = sc.nextInt();
+        switch (choice) {
+        case 1:
+            SBaccount sb = new SBaccount();
+     
+                System.out.println(
+                    "Enter the Average SB amount ");
+                double amount = sc.nextDouble();
+                System.out.println(
+                    "Interest gained is :  "
+                    + sb.calculateInterest(amount));
+            break;
+        case 2:
+                FDaccount fd = new FDaccount();
+                System.out.println("Enter the FD Amount");
+                double fAmount = sc.nextDouble();
+                System.out.println("Interest gained is:  "+ fd.calculateInterest(fAmount));
+            break;
+        case 3:
+                RDaccount rd = new RDaccount();
+                System.out.println("Enter the RD amount");
+                double Ramount = sc.nextDouble();
+                System.out.println("Interest gained is:  "+ rd.calculateInterest(Ramount));
+            break;
+        case 4:
+            System.out.println("DO YOU WANT TO CALCULATE AGAIN ????"+ " "+ "RUN AGAIN THE PROGRAM");
+        default:
+            System.out.println("Wrong choice");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sf
+
+import java.util.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.*;
+
+class Employee implements Serializable{
+    public String eName;
+    public int eid;
+    public String des;
+    public int sal;
+    Employee(String n,int id,String des,int sal){
+        eName=n;
+        eid=id;
+        this.des=des;
+        this.sal=sal;
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    Employee e[]=new Employee[10];
+	    int i=0;
+	    do{
+	    System.out.println("----------|Menu|-------------------");
+	             System.out.println("1. Add an Employee: ");
+                 System.out.println("2. Display All");
+                 System.out.println("3. Exit");
+                 System.out.println("Enter your choice: ");
+                 
+                 int ch=sc.nextInt();
+                 switch(ch){
+                     case 1:
+                         System.out.println("Enter the name of Employee");
+                         String n=sc.next();
+                         System.out.println("Enter the Id of Employee");
+                         int id=sc.nextInt();
+                         System.out.println("Enter the Designation of Employee");
+                         String des=sc.next();
+                         System.out.println("Enter the salary of Employee");
+                         int sal=sc.nextInt();
+                        e[i]=new Employee(n,id,des,sal);
+                        String filename = "Anuj.txt";
+                        
+                        try {
+ 
+                            // Saving of object in a file
+                            FileOutputStream file = new FileOutputStream(filename);
+                            ObjectOutputStream out = new ObjectOutputStream(file);
+                 
+                            // Method for serialization of object
+                            out.writeObject(e[i++]);
+                 
+                            out.close();
+                            file.close();
+                        }
+                 
+                        catch (IOException ex) {
+                            System.out.println("IOException is caught");
+                        }
+                       
+                       break;
+                    case 2:
+                        try{
+                            String filename1 = "Anuj.txt";
+                         FileInputStream file = new FileInputStream(filename1);
+                         ObjectInputStream in = new ObjectInputStream(file);
+ 
+                        // Method for deserialization of object
+                        Employee E = (Employee)in.readObject();
+             
+                        
+                        for(int j=0;j<i;j++)
+System.out.println("Employee "+(j+1)+". Details: "+"\nEmployee Name: " + e[j].eName+"\nEmployee Id: "+e[j].eid+"\nEmployee Designation: "+e[j].des+"\nEmployee Salary: "+e[j].sal+"\n");
+                        in.close();
+                        file.close();
+                        }catch(Exception e1){System.out.println("Error/Exception occured!..");}
+                        break;
+                    
+                    case 3: return;
+                        
+                 }
+                 
+	    }while(true);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sh
+
+a)
+import java.util.*;
+public class Hash
+{
+	public static void main(String[] args) {
+		Hashtable<String, Integer> hash = new Hashtable<>();
+ 
+        hash.put("A", 1);
+        hash.put("B", 2);
+        hash.put("C", 3);
+ 
+        int valueA = hash.get("A");
+        System.out.println("Value of A: " + valueA);
+ 
+     
+        Enumeration<String> keys = hash.keys();
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+            System.out.println("Key: " + key + ", Value: " + hash.get(key));
+        }
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+b)
+
+import java.util.*;
+public class Hash_Set
+{
+	public static void main(String[] args) {
+		System.out.println(" ");
+		Set< String> st = new HashSet<>();
+		st.add("Anuj");
+		st.add("Ravi");
+		st.add("Rane");
+		st.add("Vijay");
+		System.out.println("Set1: "+st);
+	    Set< String> st1 = new HashSet<>(st);
+	    st1.add("Sanjay");
+	    st1.add("Rahul");
+	    System.out.println("Set2: "+st1);
+	    Set< String> st2 = new HashSet<>();
+	    st2.addAll(st1);
+        System.out.println("Set3: "+st2);
+        st2.remove("Ajinkya");
+        System.out.println("Afer removing Ajinkya "+st2);
+        System.out.println("Iterating");
+        Iterator<String> i= st2.iterator();
+        while(i.hasNext())
+            System.out.println(i.next());
+        System.out.println("Size of Set3: "+st2.size());
+        System.out.println("After Removing Set2: "+st1.removeAll(st)+"\n Set1 "+st1+"\n"+st);
+       
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sl
+
+import java.util.*;  
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    ArrayList<String> list=new ArrayList<String>();
+	  list.add("Anuj");
+      list.add("Ravi");    
+      list.add("Rane"); 
+      if(list.contains("Rane")){
+          int Index=list.indexOf("Rane");
+          System.out.println("Rane found at Index: "+Index);
+      }
+      else{  System.out.println("Element Not Found");}
+      
+  
+      for(int i=0;i<list.size();i++)
+     {String a=list.get(i);
+     System.out.println(a);
+     }
+     list.remove(1);
+		System.out.println("After removing Element at index 1: "+list);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sm
+
+import java.util.*;
+public class Test
+{
+     public static void main(String[] args)
+     {
+		 Thread tortoise = new Tortoise();
+		 tortoise.start(); 
+		 for(int a=1;a<11;a++)
+				{
+				  System.out.println("Distance covered by HARE = "+(a));   
+				}
+		System.out.println("HARE IS GOING TO SLEEP");
+		try
+		{
+		  Thread.sleep(3000); //current thread is hare
+		}
+		catch(InterruptedException e)
+		{
+			System.out.println(e);
+		}
+
+		System.out.println("HARE AGAIN STARTED THE RACE");
+
+		for(int b=11;b<21;b++)
+		  System.out.println("Distance covered by HARE =  "+(b));
+		System.out.println("HARE HAS COMPLETED THE  RACE");
+  }
+}
+
+class Tortoise extends Thread
+{   
+    public void run()
+    {
+		for(int c=1;c<21;c++)
+		{
+		  System.out.println("Distance covered by TORTOISE =  "+c);    
+		}
+		System.out.println("TORTOISE HAS WON THE RACE");
+  }  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sd
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ */
+
+package com.mycompany.exp8;
+
+/**
+ *
+ * @author Anuj Ravi Rane
+ */
+import java.sql.*;
+import java.util.*;
+public class Exp8 {
+    	public static void main(String[] args) {
+            try{
+            String name=null,pname=null;
+            int quantity; 
+            Scanner sc= new Scanner(System.in);
+                System.out.println("Enter the coustomer name: ");
+               name=sc.next();
+                System.out.println("Enter the product name: ");
+                 pname=sc.next();
+                System.out.println("Enter the quantity : ");
+                 quantity=sc.nextInt();
+                
+                 Class.forName("com.mysql.jdbc.Driver");
+                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sql_store","root","1234");
+                 
+                 Statement stmt=con.createStatement();
+                
+                 PreparedStatement ps=con.prepareStatement("insert into test values(?,?,?)");
+                
+                 ps.setString(1,name);
+                 ps.setString(2,pname);
+                 ps.setInt(3,quantity);
+                 
+                 ps.executeUpdate();
+                 
+                 System.out.println("Successfully added!!!");
+                 
+                 
+                 ResultSet rs=stmt.executeQuery("select*from test");
+                 
+                 while(rs.next())
+                     System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getInt(3));//double quotes are added to give user option to add values
+                 System.out.print("Successfully");
+                 con.close();
+                 
+            }catch(Exception e){
+            System.out.println(e);}
+                
+	}
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sb
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.*;
+/**
+ *
+ * @author Anuj Ravi Rane
+ */
+public class auctioning extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    private static final long serialVersionUID = 1L;
+       
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+		response.setContentType("text/html");  
+		PrintWriter out = response.getWriter();  
+			          
+			String n=request.getParameter("userName");  
+			String p=request.getParameter("productName");  
+			int e=Integer.parseInt(request.getParameter("bidValue"));  
+		
+			          
+			try{  
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","1234");  
+			Statement stmt=con.createStatement();  
+			PreparedStatement ps=con.prepareStatement("insert into user values(?,?,?)");  
+			  
+			ps.setString(1,n);  
+			ps.setString(2,p);  
+			ps.setInt(3,e);  
+			
+				          
+			int i=ps.executeUpdate();  
+			if(i>0)  
+			out.print("You are successfully registered...");  
+			      
+			ResultSet rs=stmt.executeQuery("select * from user where UName='"+n+"'");  
+			
+			while(rs.next())  
+			out.println("<br>Your data is:"+rs.getString(1)+"  "+rs.getString(2)+" "+rs.getInt(3));   
+			con.close();
+			}catch (Exception e2) 
+			{System.out.println(e2);}  
+			          
+			out.close();  
+			}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="auctioning" method="post">  
+	  
+Name:<input type="text" name="userName"/><br/><br/>  
+Product:  
+<select name="productName">  
+<option>Dell</option>  
+<option>HP</option>  
+<option>Sony</option>  
+<option>Lenovo</option>  
+</select>  
+<br/><br/>  
+Bid Value:<input type="text" name="bidValue"/><br/><br/>  
+<input type="submit" value="register"/>  
+</form>  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>auctioning</servlet-name>
+        <servlet-class>auctioning</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>auctioning</servlet-name>
+        <url-pattern>/auctioning</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/testimg"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ss
+
+
+index.html
+
+<html>
+   <head><title>JSP With JDBC</title></head>
+   <body>
+       <h1><a href="Register.html" >New User Register Here</a></h1>
+ <h1><a href="Login.html" >Click Here to Login</a></h1> 
+   </body>
+</html>
+
+
+
+
+Register.jsp
+
+<%@page contentType="text/html" import="java.sql.*"%>
+<html><body>
+       <h1>Registration JSP Page</h1>
+   <%
+       String uname=request.getParameter("txtName");
+       String pass1 = request.getParameter("txtPass1");
+       String pass2 = request.getParameter("txtPass2");
+       String email = request.getParameter("txtEmail");
+       String ctry = request.getParameter("txtCon");
+ if(pass1.equals(pass2)){
+       try{
+   Class.forName("com.mysql.jdbc.Driver");
+   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb","root","1234");
+   PreparedStatement stmt = con.prepareStatement("insert into user values (?,?,?,?)");
+   stmt.setString(1, uname);   stmt.setString(2, pass1);
+   stmt.setString(3, email);   stmt.setString(4, ctry);
+   int row = stmt.executeUpdate();
+   if(row==1) { out.println("Registration Successful"); }
+   else {   
+       out.println("Registration FFFFFAAAIIILLLL !!!!");
+       %>
+           <jsp:include page="Register.html" ></jsp:include>
+       <%
+   
+       }
+   }catch(Exception e){out.println(e);}
+ }
+ else
+ {
+ out.println("<h1>Password Mismatch</h1>");
+ %>
+ <jsp:include page="Register.html" ></jsp:include>
+<% }
+   %>
+   </body>
+</html>
+
+
+
+
+Register.html
+
+<html><head><title>New User Registration Page</title></head>
+   <body>
+       <form action="Register.jsp" >
+           <h1> New User Registration Page</h1>
+           Enter User Name <input type="text" name="txtName" ><br>
+           Enter Password <input type="password" name="txtPass1" ><br>
+           Re-Enter Password<input type="password" name="txtPass2" ><br>
+           Enter Email<input type="text" name="txtEmail" ><br>
+           Enter Country Name <input type="text" name="txtCon" ><br>
+           <input type="reset" ><input type="submit" value="REGISTER" >
+       </form>
+   </body>
+</html>
+
+
+
+
+
+
+Login.jsp
+
+<%@page contentType="text/html" import="java.sql.*"%>
+<html><body>
+       <h1>Registration JSP Page</h1>
+   <%
+       String uname=request.getParameter("txtName");
+       String pass = request.getParameter("txtPass");
+      
+ 
+       try{
+   Class.forName("com.mysql.jdbc.Driver");
+   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb","root","1234");
+   PreparedStatement stmt = con.prepareStatement("select txtPass1 from user where txtName=?");
+   stmt.setString(1, uname); 
+   ResultSet rs = stmt.executeQuery();
+   if(rs.next()){
+       if(pass.equals(rs.getString(1)))
+       {
+           out.println("<h1>~~~ LOGIN SUCCESSFULLL ~~~ </h1>");
+       }
+       }
+   else{
+   out.println("<h1>User Name not exist !!!!!</h1>");
+   %>
+   <jsp:include page="Register.html" ></jsp:include>
+       <%
+   }
+       }catch(Exception e){out.println(e);}
+  %>
+   </body>
+</html>
+
+
+
+
+
+
+Login.html
+
+<html>
+   <body>
+       <h1>Forgot Password Page</h1>
+       <form action="ChangePasswd.jsp" >         
+           Enter User Name <input type="text" name="txtName" >   
+           <input type="reset" ><input type="submit" value="~~~SUBMIT~~" >
+       </form>
+   </body>
+</html>
+
+
+
+
+
+
+
+ChangePassword.jsp
+
+<%@page contentType="text/html" import="java.sql.*"%>
+<html><body>
+       <h1>Forgot Password JSP Page</h1>
+   <%
+       String uname=request.getParameter("txtName");
+      
+ 
+       try{
+   Class.forName("com.mysql.jdbc.Driver");
+   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb","root","1234");
+   PreparedStatement stmt = con.prepareStatement("select txtEmail from user where txtName=?");
+   stmt.setString(1, uname);
+   ResultSet rs = stmt.executeQuery();
+   if(rs.next()){
+       if(rs.getString(1).length() > 0)
+       {
+           out.println("<h1>~~~ SEND LINK TO CHANGE PASSWORD ~~~ </h1>");
+       }
+       }
+   else{
+   out.println("<h1>User Name not exist !!!!!</h1>");
+   %>
+   <jsp:include page="ChangePasswd.html" ></jsp:include>
+       <%
+   }
+       }catch(Exception e){out.println(e);}
+  %>
+   </body>
+</html>
+
+
+
+
+
+
+ChangePassword.html
+
+<html>
+   <body>
+       <h1>Forgot Password Page</h1>
+       <form action="ChangePasswd.jsp" >         
+           Enter User Name <input type="text" name="txtName" >   
+           <input type="reset" ><input type="submit" value="~~~SUBMIT~~" >
+       </form>
+   </body>
+</html>
