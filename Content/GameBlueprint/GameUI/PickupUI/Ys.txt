@@ -1,0 +1,73 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print('\n|=================== SET ==================|')
+set_A = {1,2,3}
+set_B = {1,8,9}
+
+print(f'set_A: {set_A}, \nset_B:{set_B}')
+
+print('\nUNION: ',set_A|set_B)
+
+print('INTERSECTION: ',set_A&set_B)
+
+print('DIFFERENCE: ',set_A-set_B)
+
+print('\nlength of A and B: ',len(set_A))
+
+print(f'\nmin(A): {min(set_A)} ----  max(A): {max(set_A)}')
+print(f'min(B): {min(set_B)} ----  max(B): {max(set_B)}')
+
+print('\nA.add() : ')
+set_A.add('Anuj')
+print('After A.add(): ',set_A)
+
+print('\nA.pop(): ')
+set_A.pop()
+print('After pop(A): ',set_A)
+
+print('\nB.remove(): ')
+set_B.remove(1)
+print(set_B)
+
+print('\nB.update(): ')
+set_B.update('Anuj')
+print(set_B)
+
+print('\n|===========================================|\n')

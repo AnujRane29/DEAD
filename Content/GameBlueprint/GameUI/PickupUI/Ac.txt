@@ -1,0 +1,813 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yp
+
+x=int(input("enter the value of x:"))
+#list=[4,-6,3,2]
+
+n=int(input("enter size of list:"))
+list=[]
+
+
+ans=0
+for i in range(0, n):
+    ele = int(input("enter the coefficient:"))
+    list.append(ele)
+    ans+=list[i]*(x**(n-i-1))
+
+print("The evaluation of polynomial is: "+str(ans))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yo
+
+def modify(string):  
+  final = ""   
+  for i in range(len(string)):  
+    if i % 2 == 0:  
+      final = final + string[i]  
+  return final
+  
+string=input("Enter string:")
+print("Modified string is:")
+print(modify(string))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ysp
+
+str=input("Enter a string: ")
+n=len(str)
+count=0
+i=0
+j=n-1
+while(i<j):
+   if(str[i]!=str[j]):
+     count+=1
+   i+=1
+   j-=1     
+     
+if(count==0):
+  print("Entered string is a Palindrome")
+else:
+    print("Entered string is not a Palindrome")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ys
+
+print('\n|=================== SET ==================|')
+set_A = {1,2,3}
+set_B = {1,8,9}
+
+print(f'set_A: {set_A}, \nset_B:{set_B}')
+
+print('\nUNION: ',set_A|set_B)
+
+print('INTERSECTION: ',set_A&set_B)
+
+print('DIFFERENCE: ',set_A-set_B)
+
+print('\nlength of A and B: ',len(set_A))
+
+print(f'\nmin(A): {min(set_A)} ----  max(A): {max(set_A)}')
+print(f'min(B): {min(set_B)} ----  max(B): {max(set_B)}')
+
+print('\nA.add() : ')
+set_A.add('Anuj')
+print('After A.add(): ',set_A)
+
+print('\nA.pop(): ')
+set_A.pop()
+print('After pop(A): ',set_A)
+
+print('\nB.remove(): ')
+set_B.remove(1)
+print(set_B)
+
+print('\nB.update(): ')
+set_B.update('Anuj')
+print(set_B)
+
+print('\n|===========================================|\n')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yb
+
+a)
+
+import math
+def ball_collide(ball_tuple1,ball_tuple2):
+    d=math.sqrt((ball_tuple1[0]-ball_tuple2[0])**2 + (ball_tuple1[1]-ball_tuple2[1])**2)
+    if(d<=(ball_tuple1[2]+ball_tuple2[2])):
+        return True
+    else:
+        return False
+
+ball_tuple1=(-2,-2,2)
+ball_tuple2=(1,1,2)
+collision=ball_collide(ball_tuple1,ball_tuple2)
+if(collision):
+    print("Balls are colliding.")
+else:
+    print("Balls are not colliding.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b)
+
+import math
+
+def mean(numlist):
+    no_of_eles=len(numlist)
+    summ=sum(numlist)
+    avg=summ/float(no_of_eles)
+    print("Mean for given set of numbers is : ",avg)
+    return avg
+
+def median(numlist):
+    numlist.sort()
+    if(len(numlist)%2!=0):
+        i=len(numlist)//2
+        print("Median for given set of numbers is : ",numlist[i])
+    else:
+        i=len(numlist)//2
+        print("Median for given set of numbers is : ",
+
+(numlist[i-1]+numlist[i])/2)
+    return
+
+def mode(numlist):
+    modedict={}
+    mincount=1
+    for ele in numlist:
+        maxcount=numlist.count(ele)
+        if(maxcount>=mincount):
+            mincount=maxcount
+            modedict[ele]=mincount
+    if(mincount==1):
+        print("Mode for given set of numbers is : None")
+    else:
+        print("Mode for given set of numbers is : ",end='')
+        for ele in modedict:
+            if(modedict[ele]==mincount):
+                print(ele)
+    return
+
+
+
+def variance(numlist, m):
+     no_of_eles=len(numlist)
+     summ=0
+     for i in range (no_of_eles):
+      summ+=pow((numlist[i]-m),2)
+     var=summ/no_of_eles
+     print("Varicance for given set of numbers is : ",var)
+     return var
+ 
+def stdev(numlist, var):
+     std=(var)**(0.5)
+     print("Varicance for given set of numbers is : ",std)
+     return 
+
+
+
+numlist=[]
+n=int(input("Enter number of elements to be insert:"))
+for i in range(n):
+    ele=int(input("Enter element:"))
+    numlist.append(ele)
+m=mean(numlist)
+median(numlist)
+mode(numlist)
+var=variance(numlist,m)
+stdev(numlist,var)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yne
+
+a)
+
+def nearly_equal(str1, str2):
+    count=0
+    i=j=0
+    while(i<len(str1) and j<len(str2)):
+        if(str1[i]!=str2[j]):
+            count=count+1
+            if(len(str1)>len(str2)):
+                i=i+1
+            elif (len(str1)==len(str2)):
+                pass
+            else:
+                i=i-1
+        if(count>1):
+            return False
+        i=i+1
+        j=j+1
+    if(count<2):
+        return True
+
+str1=input("Enter first string::\n")
+str2=input("Enter second string::\n")
+
+boolean=nearly_equal(str1, str2)
+
+if(boolean):
+    print("Strings are nearly equal.")
+else:
+    print("Strings are not equal")
+
+
+
+b)
+
+def dups(numlist):
+    duplicates={}
+    for ele in numlist:
+        c=numlist.count(ele)
+        if(c>=2):
+            duplicates[ele]=c
+    print("Duplicate elements are:\n",duplicates)
+    return
+
+numlist=[]
+n=int(input("Enter number of elements to be inserted:\n"))
+for i in range(n):
+    ele= int(input("Enter element:"))
+    numlist.append(ele)
+dups(numlist)
+
+
+
+
+c)
+
+def unique(numlist):
+    uniqueele=[]
+    for ele in numlist:
+        c=numlist.count(ele)
+        if(c==1):
+            uniqueele.append(ele)
+    print("Unique elements are:\n",uniqueele)
+    return
+
+numlist=[]
+n=int(input("Enter number of elements to be inserted:\n"))
+for i in range(n):
+    ele= int(input("Enter element:"))
+    numlist.append(ele)
+unique(numlist)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yc
+
+def cumprod(lst):
+    results = []
+    cur = 1
+    for n in lst:
+        cur *= n
+        results.append(cur)
+    return results
+
+def reverse(list):
+    j= len(list)-1
+    i=0
+    while(i<=j):
+        temp=list[i]
+        list[i]=list[j]
+        list[j]=temp
+        j=j-1
+        i=i+1
+        
+
+n=eval(input("Enter a list"))
+
+print(cumprod(n))
+reverse(n)
+print(n)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yr
+
+a)
+import re
+String1= "hi hitman had you gone for batting"
+x = re.findall("but", String1)
+print(x)
+String2= "he is bitten by a dog"
+x= re.findall("bit", String2)
+print(x)
+
+String3= "butterfly is colorfull"
+x= re.findall("but", String3)
+print(x)
+String4= "hat is oval in shape"
+x= re.findall("hat", String4)
+print(x)
+String5= "ramana is living in the hut,hits mosquitoes in the evening"
+x= re.findall("hut|hit", String5)
+print(x)
+
+
+b)
+import re
+s1="Anuj Rane is learning java,Anuj Rane is eagerly waiting for learning python"
+s2=re.findall("Anuj Rane",s1)
+print(s2) 
+
+
+
+c)
+def printInitials(str):
+     length = len(string)
+     # to remove any leading or trailing spaces
+     string.strip()
+     # to store extracted words
+     t = ""
+     for i in range(length):
+         ch = string[i]
+         if ch != ' ':
+             # forming the word
+             t += ch
+             # when space is encountered
+             # it means the name is completed
+             # and thereby extracted
+         else:
+            # printing the first letter
+            # of the name in capital letters
+            print(t[0].upper() + ". ", end="")
+            t = ""
+     temp = ""
+     # for the surname, we have to print the entire
+     # surname and not just the initial
+     # string "t" has the surname now
+     for j in range(len(t)):
+         # first letter of surname in capital letter
+         if j == 0:
+             temp += t[0].upper()
+             # rest of the letters in small
+         else:
+             temp += t[j].lower()
+     # printing surname
+     print(temp)
+     
+ 
+# Driver Code
+if __name__ == "__main__":
+ string = "Anuj Ravi Rane"
+ printInitials(string) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ym
+
+a)
+
+import multiprocessing 
+import os 
+  
+def worker1(): 
+    # printing process id 
+    print("ID of process running worker1: {}".format(os.getpid())) 
+  
+def worker2(): 
+    # printing process id 
+    print("ID of process running worker2: {}".format(os.getpid())) 
+  
+if __name__ == "__main__": 
+    # printing main program process id 
+    print("ID of main process: {}".format(os.getpid())) 
+  
+    # creating processes 
+    p1 = multiprocessing.Process(target=worker1) 
+    p2 = multiprocessing.Process(target=worker2) 
+  
+    # starting processes 
+    p1.start() 
+    p2.start() 
+
+    # process IDs 
+    print("ID of process p1: {}".format(p1.pid)) 
+    print("ID of process p2: {}".format(p2.pid)) 
+  
+    # wait until processes are finished 
+    p1.join() 
+    p2.join() 
+
+    # both processes finished 
+    print("Both processes finished execution!") 
+  
+    # check if processes are alive 
+    print("Process p1 is alive: {}".format(p1.is_alive())) 
+    print("Process p2 is alive: {}".format(p2.is_alive()))
+
+
+
+b)
+
+class Account:
+    def __init__ (self):
+        self.balance = 0 
+        print ('Your Account is Created.') 
+    def deposit (self):
+        amount = int (input ('Enter the amount to deposit:')) 
+        self.balance +=amount 
+        print ('Your New Balance =%d' % self.balance) 
+    def withdraw (self):
+        amount = int (input ('Enter the amount to withdraw:')) 
+        if (amount > self.balance):
+            print ('Insufficient Balance!') 
+        else:
+            self.balance -= amount 
+            print ('Your Remaining Balance =%d' % self.balance) 
+            
+    def enquiry (self):
+            print ('Your Balance =%d' % self.balance) 
+            
+            
+account = Account () 
+
+# creating options  
+while True:  
+    print("\nMAIN MENU")  
+    print("1. deposit")  
+    print("2. withdraw")  
+    print("3. enquiry")
+    print("4. exit")
+    choice1 = int(input("Enter the Choice:"))  
+  
+    if choice1 == 1:  
+        account.deposit () 
+    elif choice1 ==2:  
+        account.withdraw ()
+    elif choice1 ==3:  
+        account.enquiry ()
+    else: break
+ 
+ 
+
+
+c(1)
+
+class Account:
+    def __init__ (self):
+        self.balance = 0 
+        print ('Your Account is Created.') 
+    def deposit (self):
+        amount = int (input ('Enter the amount to deposit:')) 
+        self.balance +=amount 
+        print ('Your New Balance =%d' % self.balance) 
+    def withdraw (self):
+        amount = int (input ('Enter the amount to withdraw:')) 
+        if (amount > self.balance):
+            print ('Insufficient Balance!') 
+        else:
+            self.balance -= amount 
+            print ('Your Remaining Balance =%d' % self.balance) 
+            
+    def enquiry (self):
+            print ('Your Balance =%d' % self.balance) 
+            
+            
+account = Account () 
+
+# creating options  
+while True:  
+    print("\nMAIN MENU")  
+    print("1. deposit")  
+    print("2. withdraw")  
+    print("3. enquiry")
+    print("4. exit")
+    choice1 = int(input("Enter the Choice:"))  
+  
+    if choice1 == 1:  
+        account.deposit () 
+    elif choice1 ==2:  
+        account.withdraw ()
+    elif choice1 ==3:  
+        account.enquiry ()
+    else: break
+ 
+ 
+
+
+c(2)
+
+# Implement Queue using List(Functions)
+q=[]
+def Enqueue():
+    if len(q)==size: # check wether the stack is full or not
+        print("Queue is Full!!!!")
+    else:
+        element=input("Enter the element:")
+        q.append(element)
+        print(element,"is added to the Queue!")
+def dequeue():
+    if not q:# or if len(stack)==0
+        print("Queue is Empty!!!")
+    else:
+        e=q.pop(0)
+        print("element removed!!:",e)
+def display():
+    print(q)
+size=int(input("Enter the size of Queue:"))
+while True:
+        print("Select the Operation: 1.Add 2.Delete 3. Display 4. Quit")
+        choice=int(input())
+        if choice==1:
+            Enqueue()
+        elif choice==2:
+            dequeue()
+        elif choice==3:
+            display()
+        elif choice==4:
+            break
+        else:
+            print("Invalid Option!!!")

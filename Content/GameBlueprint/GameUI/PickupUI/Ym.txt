@@ -1,0 +1,163 @@
+a)
+
+import multiprocessing 
+import os 
+  
+def worker1(): 
+    # printing process id 
+    print("ID of process running worker1: {}".format(os.getpid())) 
+  
+def worker2(): 
+    # printing process id 
+    print("ID of process running worker2: {}".format(os.getpid())) 
+  
+if __name__ == "__main__": 
+    # printing main program process id 
+    print("ID of main process: {}".format(os.getpid())) 
+  
+    # creating processes 
+    p1 = multiprocessing.Process(target=worker1) 
+    p2 = multiprocessing.Process(target=worker2) 
+  
+    # starting processes 
+    p1.start() 
+    p2.start() 
+
+    # process IDs 
+    print("ID of process p1: {}".format(p1.pid)) 
+    print("ID of process p2: {}".format(p2.pid)) 
+  
+    # wait until processes are finished 
+    p1.join() 
+    p2.join() 
+
+    # both processes finished 
+    print("Both processes finished execution!") 
+  
+    # check if processes are alive 
+    print("Process p1 is alive: {}".format(p1.is_alive())) 
+    print("Process p2 is alive: {}".format(p2.is_alive()))
+
+
+
+b)
+
+class Account:
+    def __init__ (self):
+        self.balance = 0 
+        print ('Your Account is Created.') 
+    def deposit (self):
+        amount = int (input ('Enter the amount to deposit:')) 
+        self.balance +=amount 
+        print ('Your New Balance =%d' % self.balance) 
+    def withdraw (self):
+        amount = int (input ('Enter the amount to withdraw:')) 
+        if (amount > self.balance):
+            print ('Insufficient Balance!') 
+        else:
+            self.balance -= amount 
+            print ('Your Remaining Balance =%d' % self.balance) 
+            
+    def enquiry (self):
+            print ('Your Balance =%d' % self.balance) 
+            
+            
+account = Account () 
+
+# creating options  
+while True:  
+    print("\nMAIN MENU")  
+    print("1. deposit")  
+    print("2. withdraw")  
+    print("3. enquiry")
+    print("4. exit")
+    choice1 = int(input("Enter the Choice:"))  
+  
+    if choice1 == 1:  
+        account.deposit () 
+    elif choice1 ==2:  
+        account.withdraw ()
+    elif choice1 ==3:  
+        account.enquiry ()
+    else: break
+ 
+ 
+
+
+c(1)
+
+class Account:
+    def __init__ (self):
+        self.balance = 0 
+        print ('Your Account is Created.') 
+    def deposit (self):
+        amount = int (input ('Enter the amount to deposit:')) 
+        self.balance +=amount 
+        print ('Your New Balance =%d' % self.balance) 
+    def withdraw (self):
+        amount = int (input ('Enter the amount to withdraw:')) 
+        if (amount > self.balance):
+            print ('Insufficient Balance!') 
+        else:
+            self.balance -= amount 
+            print ('Your Remaining Balance =%d' % self.balance) 
+            
+    def enquiry (self):
+            print ('Your Balance =%d' % self.balance) 
+            
+            
+account = Account () 
+
+# creating options  
+while True:  
+    print("\nMAIN MENU")  
+    print("1. deposit")  
+    print("2. withdraw")  
+    print("3. enquiry")
+    print("4. exit")
+    choice1 = int(input("Enter the Choice:"))  
+  
+    if choice1 == 1:  
+        account.deposit () 
+    elif choice1 ==2:  
+        account.withdraw ()
+    elif choice1 ==3:  
+        account.enquiry ()
+    else: break
+ 
+ 
+
+
+c(2)
+
+# Implement Queue using List(Functions)
+q=[]
+def Enqueue():
+    if len(q)==size: # check wether the stack is full or not
+        print("Queue is Full!!!!")
+    else:
+        element=input("Enter the element:")
+        q.append(element)
+        print(element,"is added to the Queue!")
+def dequeue():
+    if not q:# or if len(stack)==0
+        print("Queue is Empty!!!")
+    else:
+        e=q.pop(0)
+        print("element removed!!:",e)
+def display():
+    print(q)
+size=int(input("Enter the size of Queue:"))
+while True:
+        print("Select the Operation: 1.Add 2.Delete 3. Display 4. Quit")
+        choice=int(input())
+        if choice==1:
+            Enqueue()
+        elif choice==2:
+            dequeue()
+        elif choice==3:
+            display()
+        elif choice==4:
+            break
+        else:
+            print("Invalid Option!!!")

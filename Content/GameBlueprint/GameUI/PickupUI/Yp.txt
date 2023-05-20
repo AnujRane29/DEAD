@@ -1,0 +1,57 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+x=int(input("enter the value of x:"))
+#list=[4,-6,3,2]
+
+n=int(input("enter size of list:"))
+list=[]
+
+
+ans=0
+for i in range(0, n):
+    ele = int(input("enter the coefficient:"))
+    list.append(ele)
+    ans+=list[i]*(x**(n-i-1))
+
+print("The evaluation of polynomial is: "+str(ans))

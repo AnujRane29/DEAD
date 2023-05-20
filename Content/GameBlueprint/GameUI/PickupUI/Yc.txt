@@ -1,0 +1,57 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def cumprod(lst):
+    results = []
+    cur = 1
+    for n in lst:
+        cur *= n
+        results.append(cur)
+    return results
+
+def reverse(list):
+    j= len(list)-1
+    i=0
+    while(i<=j):
+        temp=list[i]
+        list[i]=list[j]
+        list[j]=temp
+        j=j-1
+        i=i+1
+        
+
+n=eval(input("Enter a list"))
+
+print(cumprod(n))
+reverse(n)
+print(n)
+

@@ -1,0 +1,137 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a)
+
+import math
+def ball_collide(ball_tuple1,ball_tuple2):
+    d=math.sqrt((ball_tuple1[0]-ball_tuple2[0])**2 + (ball_tuple1[1]-ball_tuple2[1])**2)
+    if(d<=(ball_tuple1[2]+ball_tuple2[2])):
+        return True
+    else:
+        return False
+
+ball_tuple1=(-2,-2,2)
+ball_tuple2=(1,1,2)
+collision=ball_collide(ball_tuple1,ball_tuple2)
+if(collision):
+    print("Balls are colliding.")
+else:
+    print("Balls are not colliding.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b)
+
+import math
+
+def mean(numlist):
+    no_of_eles=len(numlist)
+    summ=sum(numlist)
+    avg=summ/float(no_of_eles)
+    print("Mean for given set of numbers is : ",avg)
+    return avg
+
+def median(numlist):
+    numlist.sort()
+    if(len(numlist)%2!=0):
+        i=len(numlist)//2
+        print("Median for given set of numbers is : ",numlist[i])
+    else:
+        i=len(numlist)//2
+        print("Median for given set of numbers is : ",
+
+(numlist[i-1]+numlist[i])/2)
+    return
+
+def mode(numlist):
+    modedict={}
+    mincount=1
+    for ele in numlist:
+        maxcount=numlist.count(ele)
+        if(maxcount>=mincount):
+            mincount=maxcount
+            modedict[ele]=mincount
+    if(mincount==1):
+        print("Mode for given set of numbers is : None")
+    else:
+        print("Mode for given set of numbers is : ",end='')
+        for ele in modedict:
+            if(modedict[ele]==mincount):
+                print(ele)
+    return
+
+
+
+def variance(numlist, m):
+     no_of_eles=len(numlist)
+     summ=0
+     for i in range (no_of_eles):
+      summ+=pow((numlist[i]-m),2)
+     var=summ/no_of_eles
+     print("Varicance for given set of numbers is : ",var)
+     return var
+ 
+def stdev(numlist, var):
+     std=(var)**(0.5)
+     print("Varicance for given set of numbers is : ",std)
+     return 
+
+
+
+numlist=[]
+n=int(input("Enter number of elements to be insert:"))
+for i in range(n):
+    ele=int(input("Enter element:"))
+    numlist.append(ele)
+m=mean(numlist)
+median(numlist)
+mode(numlist)
+var=variance(numlist,m)
+stdev(numlist,var)
+
